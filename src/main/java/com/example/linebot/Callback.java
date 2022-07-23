@@ -1,7 +1,9 @@
 package com.example.linebot;
 
 import com.example.linebot.replier.Follow;
+import com.example.linebot.replier.Intent;
 import com.example.linebot.replier.Parrot;
+import com.example.linebot.replier.Translate;
 import com.linecorp.bot.model.event.FollowEvent;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
@@ -39,7 +41,21 @@ public class Callback {
      */
     @EventMapping
     public Message handleMessage(MessageEvent<TextMessageContent> event) {
+        TextMessageContent tmc = event.getMessage();
+        String text = tmc.getText();
+
+        Translate translate = new Translate(event);
         Parrot parrot = new Parrot(event);
+
+        Intent intent = Intent.whichIntent(text);
+        switch(intent) {
+            case TRANSLATE -> {
+                return translate.reply();
+            }
+            case UNKNOWN -> {
+                return parrot.reply();
+            }
+        }
         return parrot.reply();
     }
 

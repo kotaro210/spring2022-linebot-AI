@@ -4,7 +4,6 @@ import com.example.linebot.replier.Follow;
 import com.example.linebot.replier.Intent;
 import com.example.linebot.replier.Parrot;
 import com.example.linebot.replier.Translate;
-import com.linecorp.bot.client.LineBlobClient;
 import com.linecorp.bot.model.event.FollowEvent;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;

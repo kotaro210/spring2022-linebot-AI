@@ -24,11 +24,6 @@ import org.springframework.cache.annotation.EnableCaching;
 public class Callback {
 
     private static final Logger log = LoggerFactory.getLogger(Callback.class);
-    private final LineBlobClient client;
-    @Autowired
-    public Callback(LineBlobClient client) {
-        this.client = client;
-    }
 
     /**
      * フォローイベントに対応する

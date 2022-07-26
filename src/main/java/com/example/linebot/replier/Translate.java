@@ -8,9 +8,10 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static java.util.Objects.requireNonNull;
 
 public class Translate implements Replier{
 
@@ -41,15 +42,15 @@ public class Translate implements Replier{
         }
 
         // aws ec2
-//        String url = String.format("http://{IPアドレス}:5000/translate?doc=%s");
+//        String url = String.format("http://{IPアドレス}/translate?doplaneTextc=%s",planeText );
         // ローカル
         String url = String.format("http://127.0.0.1:5000/translate?doc=%s", planeText);
 
         try {
             String result = restTemplate.getForObject(url, String.class);
-            return new TextMessage(result);
+            return new TextMessage(requireNonNull(result));
         } catch (RestClientException e) {
-            return new TextMessage(Objects.requireNonNull(e.getMessage()));
+            return new TextMessage(requireNonNull(e.getMessage()));
         }
     }
 }

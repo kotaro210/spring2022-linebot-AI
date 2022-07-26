@@ -24,9 +24,7 @@ public class Callback {
     @EventMapping
     public Message handleFollow(FollowEvent event) {
 
-        /**
-         * 実際はこのタイミングでフォロワーのユーザIDをデータベースにに格納しておくなど
-         */
+        // 実際はこのタイミングでフォロワーのユーザIDをデータベースにに格納しておくなど
         Follow follow = new Follow(event);
         return follow.reply();
     }
